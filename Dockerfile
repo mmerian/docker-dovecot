@@ -2,8 +2,6 @@ FROM debian:buster-slim
 
 ENV DOVECOT_USER=dovecot
 ENV DOVECOT_GROUP=dovecot
-ENV DOVECOT_CONF_DIR=/usr/local/etc/dovecot
-ENV DOVECOT_CONF_FILE=dovecot.conf
 
 COPY start-dovecot.sh /usr/local/bin
 
@@ -20,9 +18,11 @@ RUN apt-get update && \
         dovecot-imapd dovecot-sieve \
         dovecot-lmtpd dovecot-managesieved && \
     apt-get clean && \
-    chmod +x /usr/local/bin/start-dovecot.sh && \
-    mkdir /usr/local/etc/dovecot/
+    chmod +x /usr/local/bin/start-dovecot.sh
 
-VOLUME /usr/local/etc/dovecot/
+RUN mkdir -p /orig/etc && \
+    cp -r /etc/dovecot /orig/etc
+
+VOLUME /etc/dovecot
 
 CMD ["/usr/local/bin/start-dovecot.sh"]
