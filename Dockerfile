@@ -16,7 +16,8 @@ RUN apt-get update && \
     apt-get update && \
     apt-get install --no-install-recommends -y \
         dovecot-imapd dovecot-sieve \
-        dovecot-lmtpd dovecot-managesieved && \
+        dovecot-lmtpd dovecot-managesieved \
+        dovecot-lucene curl && \
     apt-get clean && \
     chmod +x /usr/local/bin/start-dovecot.sh
 
