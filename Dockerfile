@@ -1,4 +1,4 @@
-FROM debian:buster-slim
+FROM debian:bullseye-slim
 
 ENV DOVECOT_USER=dovecot
 ENV DOVECOT_GROUP=dovecot
@@ -11,7 +11,7 @@ RUN apt-get update && \
         curl gnupg dirmngr ca-certificates \
         apt-transport-https && \
     curl https://repo.dovecot.org/DOVECOT-REPO-GPG | apt-key add - && \
-    echo "deb https://repo.dovecot.org/ce-2.3-latest/debian/buster buster main" \
+    echo "deb https://repo.dovecot.org/ce-2.3-latest/debian/bullseye bullseye main" \
         > /etc/apt/sources.list.d/dovecot.list && \
     apt-get update && \
     apt-get install --no-install-recommends -y \
